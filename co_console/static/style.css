@@ -1,0 +1,16 @@
+.term {
+    font-family: console, courier, fixed, swiss, sans-serif;
+    font-size: 16px;
+    color: #D8D8D8;
+    background: none;
+}
+
+.termReverse {
+    color: #424242;
+    background: #33d011;
+}
+
+body {
+    background: #242424;
+}
+
