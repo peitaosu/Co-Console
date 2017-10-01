@@ -1,5 +1,7 @@
 # Co-Console
 
+[![GitHub license](https://img.shields.io/badge/license-New%20BSD-blue.svg)](https://raw.githubusercontent.com/peitaosu/Co-Console/master/LICENSE)
+
 ## What is Co-Console ?
 
 Co-Console is a Web-based Console, powered by `django` and `django-console`.
