@@ -106,3 +106,5 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "co_console/static")]
 CONSOLE_WHITELIST = [
     "127.0.0.1"
 ]
+
+CONSOLE_CWD = None

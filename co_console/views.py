@@ -25,7 +25,7 @@ def console_post(request):
     command = request.POST.get("command")
     if command:
         try:
-            data = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
+            data = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT, cwd=settings.CONSOLE_CWD)
         except subprocess.CalledProcessError as e:
             data = e.output
         data = data.decode('utf-8')
