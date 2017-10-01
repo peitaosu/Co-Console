@@ -4,7 +4,17 @@ from django.shortcuts import render_to_response
 from django.conf import settings
 import subprocess
 
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
 def console(request):
+    if get_client_ip(request) not in settings.CONSOLE_WHITELIST:
+        return HttpResponse("Unauthorized.", status=403)
     context = {
         'STATIC_URL': settings.STATIC_URL
     }
