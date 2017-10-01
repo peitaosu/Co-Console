@@ -108,3 +108,7 @@ CONSOLE_WHITELIST = [
 ]
 
 CONSOLE_CWD = None
+
+COMMAND_WHITELIST = [
+    "dir"
+]

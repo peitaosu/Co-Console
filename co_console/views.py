@@ -24,10 +24,14 @@ def console(request):
 def console_post(request):
     command = request.POST.get("command")
     if command:
-        try:
-            data = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT, cwd=settings.CONSOLE_CWD)
-        except subprocess.CalledProcessError as e:
-            data = e.output
+        if not command in settings.COMMAND_WHITELIST:
+            data = "Command Only Support:\n"
+            data += "\n".join(settings.COMMAND_WHITELIST)
+        else:
+            try:
+                data = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT, cwd=settings.CONSOLE_CWD)
+            except subprocess.CalledProcessError as e:
+                data = e.output
         data = data.decode('utf-8')
         output = "%c(@olive)%" + data + "%c()"
     return HttpResponse(output)
