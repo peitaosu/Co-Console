@@ -110,5 +110,10 @@ CONSOLE_WHITELIST = [
 CONSOLE_CWD = None
 
 COMMAND_WHITELIST = [
-    "dir"
+    "dir",
+    "ls"
 ]
+
+COMMAND_MAPPING = {
+    "ls" : "dir"
+}

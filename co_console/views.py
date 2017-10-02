@@ -28,6 +28,8 @@ def console_post(request):
             data = "Command Only Support:\n"
             data += "\n".join(settings.COMMAND_WHITELIST)
         else:
+            if command in settings.COMMAND_MAPPING:
+                command = settings.COMMAND_MAPPING[command]
             try:
                 data = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT, cwd=settings.CONSOLE_CWD)
             except subprocess.CalledProcessError as e:
