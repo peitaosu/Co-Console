@@ -21,3 +21,7 @@ pip install -r requirements.txt
 
 python manage.py runserver 0.0.0.0:1234
 ```
+
+## Commands
+
+Co-Console use whitelist for what commands user can use, so you need to prepare your environment and add commands into whitelist which in settings.
