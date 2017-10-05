@@ -24,12 +24,13 @@ def console(request):
 def console_post(request):
     command = request.POST.get("command")
     if command:
-        if not command in settings.COMMAND_WHITELIST:
+        command_exec = command.split(" ")[0]
+        if not command_exec in settings.COMMAND_WHITELIST:
             data = "Command Only Support:\n"
             data += "\n".join(settings.COMMAND_WHITELIST)
         else:
-            if command in settings.COMMAND_MAPPING:
-                command = settings.COMMAND_MAPPING[command]
+            if command_exec in settings.COMMAND_MAPPING:
+                command = command.replace(command_exec, settings.COMMAND_MAPPING[command_exec])
             try:
                 data = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT, cwd=settings.CONSOLE_CWD)
             except subprocess.CalledProcessError as e:
