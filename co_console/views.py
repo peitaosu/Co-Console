@@ -3,6 +3,11 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.conf import settings
 import subprocess
+import sys
+
+
+if len(settings.APPEND_PATH) > 0:
+    sys.path.append(settings.APPEND_PATH)
 
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')

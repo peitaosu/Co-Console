@@ -117,3 +117,5 @@ COMMAND_WHITELIST = [
 COMMAND_MAPPING = {
     "ls" : "dir"
 }
+
+APPEND_PATH = []
