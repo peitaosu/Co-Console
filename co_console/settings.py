@@ -110,12 +110,12 @@ CONSOLE_WHITELIST = [
 CONSOLE_CWD = None
 
 COMMAND_WHITELIST = [
-    "dir",
-    "ls"
+    "dir",
+    "ls"
 ]
 
 COMMAND_MAPPING = {
-    "ls" : "dir"
+    "ls" : "dir"
 }
 
 APPEND_PATH = []
