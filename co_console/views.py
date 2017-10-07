@@ -7,7 +7,7 @@ import sys
 
 
 if len(settings.APPEND_PATH) > 0:
-    sys.path.append(settings.APPEND_PATH)
+    sys.path.extend(settings.APPEND_PATH)
 
 
 def get_client_ip(request):
