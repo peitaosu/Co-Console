@@ -103,19 +103,24 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "co_console/static")]
 
+# IP whitelist for what ip can use this console
 CONSOLE_WHITELIST = [
     "127.0.0.1"
 ]
 
+# change the default current working directory
 CONSOLE_CWD = None
 
+# command whitelist for what commands user can use, you need to prepare your environment and add commands into whitelist.
 COMMAND_WHITELIST = [
     "dir",
     "ls"
 ]
 
+# redirect command if need
 COMMAND_MAPPING = {
     "ls" : "dir"
 }
 
+# add other path into sys.path
 APPEND_PATH = []

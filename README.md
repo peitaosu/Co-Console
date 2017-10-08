@@ -22,6 +22,30 @@ pip install -r requirements.txt
 python manage.py runserver 0.0.0.0:1234
 ```
 
-## Commands
+## Settings
 
-Co-Console use whitelist for what commands user can use, so you need to prepare your environment and add commands into whitelist which in settings.
+There are some settings in `settings.py` may need to be set if you want to have better experience as expected.
+
+```
+# IP whitelist for what ip can use this console
+CONSOLE_WHITELIST = [
+    "127.0.0.1"
+]
+
+# change the default current working directory
+CONSOLE_CWD = None
+
+# command whitelist for what commands user can use, you need to prepare your environment and add commands into whitelist.
+COMMAND_WHITELIST = [
+    "dir",
+    "ls"
+]
+
+# redirect command if need
+COMMAND_MAPPING = {
+    "ls" : "dir"
+}
+
+# add other path into sys.path
+APPEND_PATH = []
+```
