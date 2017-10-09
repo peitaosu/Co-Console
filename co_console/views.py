@@ -35,7 +35,7 @@ def console(request):
 def console_post(request):
     command = request.POST.get("command")
     if command:
-        command_exec = command.split(" ")[0]
+        command_exec = command.split(" ")[0].split(".")[0]
         if not command_exec in settings.COMMAND_WHITELIST:
             data = "Command Only Support:\n"
             data += "\n".join(settings.COMMAND_WHITELIST)
