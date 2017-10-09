@@ -2,12 +2,15 @@ from django.template.context_processors import csrf
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.conf import settings
-import subprocess
-import sys
+import os, sys, platform, subprocess
 
 
+rt_env = os.environ.copy()
 if len(settings.APPEND_PATH) > 0:
-    sys.path.extend(settings.APPEND_PATH)
+    if platform.system() == "Darwin" or platform.system() == "Linux":
+        rt_env["PATH"] = ":".join([":".join(settings.APPEND_PATH), rt_env["PATH"]])
+    elif platform.system() == "Windows":
+        rt_env["PATH"] = ";".join([";".join(settings.APPEND_PATH), rt_env["PATH"]])
 
 
 def get_client_ip(request):
@@ -40,7 +43,7 @@ def console_post(request):
             if command_exec in settings.COMMAND_MAPPING:
                 command = command.replace(command_exec, settings.COMMAND_MAPPING[command_exec])
             try:
-                data = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT, cwd=settings.CONSOLE_CWD)
+                data = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT, env=rt_env, cwd=settings.CONSOLE_CWD)
             except subprocess.CalledProcessError as e:
                 data = e.output
         data = data.decode('utf-8')
