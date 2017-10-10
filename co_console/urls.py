@@ -18,8 +18,10 @@ from django.contrib import admin
 
 from . import views
 
-urlpatterns = [
+urlpatterns = [    
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', views.console),
+    url(r'^post/$', views.console_post),
     url(r'^console/$',  views.console),
     url(r'^console/post/$',  views.console_post),
 ]
