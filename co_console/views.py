@@ -39,6 +39,9 @@ def console_post(request):
         if not command_exec in settings.COMMAND_WHITELIST:
             data = "Command Only Support:\n"
             data += "\n".join(settings.COMMAND_WHITELIST)
+        elif command_exec in settings.ARGS_REQUIRED and (len(command.split(" ")) < 2 or (len(command.split(" ")) == 2 and command.split(" ")[1] == '')):
+            data = "Command Arguments Required:\n"
+            data += "\n".join(settings.ARGS_REQUIRED)
         else:
             if command_exec in settings.COMMAND_MAPPING:
                 command = command.replace(command_exec, settings.COMMAND_MAPPING[command_exec])

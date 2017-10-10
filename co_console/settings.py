@@ -114,13 +114,19 @@ CONSOLE_CWD = None
 # command whitelist for what commands user can use, you need to prepare your environment and add commands into whitelist.
 COMMAND_WHITELIST = [
     "dir",
-    "ls"
+    "ls",
+    "python"
 ]
 
 # redirect command if need
 COMMAND_MAPPING = {
     "ls" : "dir"
 }
+
+# command which arguments required
+ARGS_REQUIRED = [
+    "python"
+]
 
 # add other path into sys.path
 APPEND_PATH = []
