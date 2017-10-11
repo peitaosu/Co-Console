@@ -4,7 +4,7 @@ from django.shortcuts import render_to_response
 from django.conf import settings
 import os, sys, platform, subprocess
 
-from commands import *
+import commands
 
 rt_env = os.environ.copy()
 if len(settings.APPEND_PATH) > 0:
@@ -46,8 +46,8 @@ def console_post(request):
         else:
             if command_exec in settings.COMMAND_MAPPING:
                 command = command.replace(command_exec, settings.COMMAND_MAPPING[command_exec])
-            if command_exec in CUSTOM_COMMAND:
-                data = CUSTOM_COMMAND[command_exec]()
+            if command_exec in commands.CUSTOM_COMMAND:
+                data = commands.CUSTOM_COMMAND[command_exec]()
             else:
                 try:
                     data = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT, env=rt_env, cwd=settings.CONSOLE_CWD)
