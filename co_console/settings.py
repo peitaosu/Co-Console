@@ -115,7 +115,8 @@ CONSOLE_CWD = None
 COMMAND_WHITELIST = [
     "dir",
     "ls",
-    "python"
+    "python",
+    "help"
 ]
 
 # redirect command if need
