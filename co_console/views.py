@@ -14,17 +14,8 @@ if len(settings.APPEND_PATH) > 0:
         rt_env["PATH"] = ";".join([";".join(settings.APPEND_PATH), rt_env["PATH"]])
 
 
-def get_client_ip(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    return ip
-
-
 def console(request):
-    if get_client_ip(request) not in settings.CONSOLE_WHITELIST:
+    if commands.ip(request) not in settings.CONSOLE_WHITELIST:
         return HttpResponse("Unauthorized.", status=403)
     context = {
         'STATIC_URL': settings.STATIC_URL
@@ -47,7 +38,7 @@ def console_post(request):
             if command_exec in settings.COMMAND_MAPPING:
                 command = command.replace(command_exec, settings.COMMAND_MAPPING[command_exec])
             if command_exec in commands.CUSTOM_COMMAND:
-                data = commands.CUSTOM_COMMAND[command_exec]()
+                data = commands.CUSTOM_COMMAND[command_exec](request)
             else:
                 try:
                     data = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT, env=rt_env, cwd=settings.CONSOLE_CWD)
