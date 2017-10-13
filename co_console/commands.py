@@ -1,3 +1,5 @@
+from django.conf import settings
+
 def help(request):
     data = """Co-Console is a Web-based Console.
 About how to setup and use it, please get details from README.md."""
@@ -11,7 +13,14 @@ def ip(request):
         ip_addr = request.META.get('REMOTE_ADDR')
     return ip_addr
 
+def cd(request):
+    command = request.POST.get("command")
+    args = command.split(" ")[1]
+    settings.CONSOLE_CWD = args
+    return settings.CONSOLE_CWD
+
 CUSTOM_COMMAND = {
     "help": help,
-    "ip": ip
+    "ip": ip,
+    "cd": cd
 }

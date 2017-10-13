@@ -117,7 +117,8 @@ COMMAND_WHITELIST = [
     "ls",
     "python",
     "help",
-    "ip"
+    "ip",
+    "cd"
 ]
 
 # redirect command if need
