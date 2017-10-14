@@ -56,7 +56,7 @@ ROOT_URLCONF = 'co_console.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR+"/co_console/static",],
+        'DIRS': [BASE_DIR+'/co_console/static',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -102,11 +102,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "co_console/static")]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'co_console/static')]
 
 # IP whitelist for what ip can use this console
 CONSOLE_WHITELIST = [
-    "127.0.0.1"
+    '127.0.0.1'
 ]
 
 # change the default current working directory
@@ -114,37 +114,37 @@ CONSOLE_CWD = None
 
 # command whitelist for what commands user can use, you need to prepare your environment and add commands into whitelist.
 COMMAND_WHITELIST = [
-    "dir",
-    "ls",
-    "python",
-    "help",
-    "ip",
-    "cd"
+    'dir',
+    'ls',
+    'python',
+    'help',
+    'ip',
+    'cd'
 ]
 
 # redirect command if need
 
-if platform.system() == "Darwin":
+if platform.system() == 'Darwin':
     # COMMAND_MAPPING for macOS
     COMMAND_MAPPING = {
-        "dir" : "ls"
+        'dir' : 'ls'
     }
 
-if platform.system() == "Linux":
+if platform.system() == 'Linux':
     # COMMAND_MAPPING for Linux
     COMMAND_MAPPING = {
-        "dir" : "ls"
+        'dir' : 'ls'
     }
 
-if platform.system() == "Windows":
+if platform.system() == 'Windows':
     # COMMAND_MAPPING for Windows
     COMMAND_MAPPING = {
-        "ls" : "dir"
+        'ls' : 'dir'
     }
 
 # command which arguments required
 ARGS_REQUIRED = [
-    "python"
+    'python'
 ]
 
 # add other path into sys.path

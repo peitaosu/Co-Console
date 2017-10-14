@@ -14,13 +14,13 @@ def ip(request):
     return ip_addr
 
 def cd(request):
-    command = request.POST.get("command")
-    args = command.split(" ")[1]
+    command = request.POST.get('command')
+    args = command.split(' ')[1]
     settings.CONSOLE_CWD = args
     return settings.CONSOLE_CWD
 
 CUSTOM_COMMAND = {
-    "help": help,
-    "ip": ip,
-    "cd": cd
+    'help': help,
+    'ip': ip,
+    'cd': cd
 }
