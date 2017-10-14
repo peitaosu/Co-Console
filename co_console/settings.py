@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import platform
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -122,9 +123,24 @@ COMMAND_WHITELIST = [
 ]
 
 # redirect command if need
-COMMAND_MAPPING = {
-    "ls" : "dir"
-}
+
+if platform.system() == "Darwin":
+    # COMMAND_MAPPING for macOS
+    COMMAND_MAPPING = {
+        "dir" : "ls"
+    }
+
+if platform.system() == "Linux":
+    # COMMAND_MAPPING for Linux
+    COMMAND_MAPPING = {
+        "dir" : "ls"
+    }
+
+if platform.system() == "Windows":
+    # COMMAND_MAPPING for Windows
+    COMMAND_MAPPING = {
+        "ls" : "dir"
+    }
 
 # command which arguments required
 ARGS_REQUIRED = [
