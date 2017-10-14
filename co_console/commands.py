@@ -1,7 +1,7 @@
 from django.conf import settings
 
 def help(request):
-    data = """Co-Console is a Web-based Console.
+    data = """Co-Console is a Web-based Console which provide a console environment can be shared with others.
 About how to setup and use it, please get details from README.md."""
     return data
 
